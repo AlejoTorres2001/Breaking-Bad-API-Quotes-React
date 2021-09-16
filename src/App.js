@@ -3,15 +3,12 @@ import { useState,useEffect } from "react";
 import Quote from './components/Quote'
 import Button from './components/Button'
 import Spinner from './components/Spinner'
-const initialQuote={
-  text:'Quote',
-  author:'Author'
-}
-
+import Quotes from "./components/Quotes";
 
 function App() {
   const [loading, setLoading] = useState(true);
-
+  const [quote,setQuote] = useState({});
+  const [quotes, setQuotes] = useState([]);
   const updateQuote = async () => {
     setLoading(true)
     const url  ="https://breakingbadapi.com/api/quote/random"
@@ -27,8 +24,13 @@ function App() {
     updateQuote()
   } , []);
 
+  useEffect(
+    ()=>{
+      setQuotes([...quotes,quote])
+    }
+    ,[quote]);
 
-  const [quote,setQuote] = useState(initialQuote)
+
 
   return (
    <div className="app">
@@ -39,6 +41,7 @@ function App() {
 
     {loading ? <Spinner/> :  <Quote quote={quote}></Quote>}
       <Button updateQuote={updateQuote}/>
+      <Quotes quotes={quotes}></Quotes>
    </div>
   );
 

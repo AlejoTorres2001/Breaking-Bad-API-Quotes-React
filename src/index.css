@@ -141,11 +141,3 @@ span {
     opacity: 1;
   }
 }
-
-.text-secondary p {
-  color: #6c757d !important;
-  font-size: 20px;
-}
-.text-secondary p span {
-  color: #8b6e38 !important;
-}
